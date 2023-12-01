@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: MIT
+// Documentation: https://github.com/Equipe-Hub-co-Hackathon-TN/smart-contracts
+
 pragma solidity ^0.8.17;
 
 contract AvalGestMain {
@@ -9,13 +11,12 @@ contract AvalGestMain {
     address public institutionWallet;
     address public managerWallet;
 
-    uint256 public contractAmount;
+    uint256 public warrantyAmount;
 
     // EVENTS
     event AddressUpdated(address walletAddr, string description);
-    event SentToManager(address to, uint256 amount);
-    event ContractCancelled(address to, uint256 amount);
-    event ContractAmount(uint256 amount);
+    event SentToManager(address to, uint256 amount);    
+    event WarrantyAmountUpdated(uint256 amount);
     event TerminationOfContract(address invest, uint256 amount);
 
     modifier onlyOwner() {
@@ -55,12 +56,12 @@ contract AvalGestMain {
         managerWallet = msg.sender;
 
         // AMOUNT IN WEI
-        contractAmount = 0;
+        warrantyAmount = 0;
     }
 
     /* SEND TOKENS TO MANAGER */
     function sendToManager(uint256 _tokenamount) public payable onlyInvest {
-        require(_tokenamount == contractAmount, "tokens too small");        
+        require(_tokenamount == warrantyAmount, "Tokens too small");        
 
         payable(managerWallet).transfer(_tokenamount);
         emit SentToManager(managerWallet, _tokenamount);
@@ -68,8 +69,8 @@ contract AvalGestMain {
 
     /* TERMINATION OF CONTRACT */
     function terminationOfContract( address _terminationWallet, uint256 _tokenamount ) public payable onlyManager {        
-        require(_terminationWallet == investWallet || _terminationWallet == institutionWallet, "Unauthorized");
-        require(_tokenamount == contractAmount, "tokens too small");
+        require(_terminationWallet == investWallet || _terminationWallet == institutionWallet, "Unauthorized address");
+        require(_tokenamount == warrantyAmount, "Tokens too small");
 
         payable(_terminationWallet).transfer(_tokenamount);
         emit TerminationOfContract(_terminationWallet, _tokenamount);
@@ -94,8 +95,8 @@ contract AvalGestMain {
     }
 
     /* UPDATE AMOUNT TOKEN */
-    function updateAmountToken(uint256 amount) external onlyManager {
-        contractAmount = amount;
-        emit ContractAmount(amount);
+    function updateWarrantyAmount(uint256 amount) external onlyManager {
+        warrantyAmount = amount;
+        emit WarrantyAmountUpdated(amount);
     }
 }
