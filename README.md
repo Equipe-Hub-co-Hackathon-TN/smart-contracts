@@ -1,14 +1,15 @@
 # Smart Contract Documentation
 
-## AvalGest Main  Contract
+## AvalGestGPT Contract
 
 ### Overview
 
-The AvalGest Main  contract is a Solidity smart contract designed to manage and facilitate financial transactions between different wallets. It includes functionalities to send tokens to a manager, terminate the contract, and update wallet addresses and contract amounts.
+The AvalGestGPT contract is a Solidity smart contract designed for managing financial transactions among different wallets. It includes functionalities to send tokens to a manager, terminate the contract, and update wallet addresses and warranty amounts.
 
 ### Contract Details
 
 - **SPDX-License-Identifier:** MIT
+- **Documentation:** [GitHub Repository](https://github.com/Equipe-Hub-co-Hackathon-TN/smart-contracts)
 - **Solidity Version:** ^0.8.17
 
 ### Contract Variables
@@ -33,10 +34,10 @@ The AvalGest Main  contract is a Solidity smart contract designed to manage and 
    - **Access:** public
    - **Description:** The wallet address assigned to the manager for handling transactions.
 
-5. **Contract Amount:**
+5. **Warranty Amount:**
    - **Type:** uint256
    - **Access:** public
-   - **Description:** The amount of tokens in wei associated with the contract.
+   - **Description:** The amount of tokens in wei associated with the warranty for the contract.
 
 ### Events
 
@@ -52,20 +53,14 @@ The AvalGest Main  contract is a Solidity smart contract designed to manage and 
      - amount (uint256): The amount of tokens sent to the manager.
    - **Description:** Triggered when tokens are sent to the manager.
 
-3. **ContractCancelled:**
+3. **WarrantyAmount:**
    - **Parameters:**
-     - to (address): The address to which the contract amount is sent.
-     - amount (uint256): The amount of tokens sent to cancel the contract.
-   - **Description:** Triggered when the contract is canceled, and tokens are sent to a specified address.
+     - amount (uint256): The updated warranty amount in tokens.
+   - **Description:** Triggered when the warranty amount is updated.
 
-4. **ContractAmount:**
+4. **TerminationOfContract:**
    - **Parameters:**
-     - amount (uint256): The updated contract amount in tokens.
-   - **Description:** Triggered when the contract amount is updated.
-
-5. **TerminationOfContract:**
-   - **Parameters:**
-     - invest (address): The address to which the contract amount is sent upon termination.
+     - invest (address): The address to which the warranty amount is sent upon contract termination.
      - amount (uint256): The amount of tokens sent to terminate the contract.
    - **Description:** Triggered when the contract is terminated, and tokens are sent to a specified address.
 
@@ -85,7 +80,7 @@ The AvalGest Main  contract is a Solidity smart contract designed to manage and 
 
 ### Constructor
 
-- **Description:** Initializes the contract with the deploying address set as the owner and assigns the same address to the invest, institution, and manager wallets. The initial contract amount is set to 0.
+- **Description:** Initializes the contract with the deploying address set as the owner and assigns the same address to the invest, institution, and manager wallets. The initial warranty amount is set to 0.
 
 ### Functions
 
@@ -93,14 +88,14 @@ The AvalGest Main  contract is a Solidity smart contract designed to manage and 
    - **Parameters:**
      - _tokenamount (uint256): The amount of tokens to send to the manager.
    - **Modifier:** onlyInvest
-   - **Description:** Sends tokens to the manager's wallet. Requires the token amount to match the contract amount.
+   - **Description:** Sends tokens to the manager's wallet. Requires the token amount to match the warranty amount.
 
 2. **terminationOfContract:**
    - **Parameters:**
-     - _terminationWallet (address): The address to which the contract amount is sent upon termination.
+     - _terminationWallet (address): The address to which the warranty amount is sent upon contract termination.
      - _tokenamount (uint256): The amount of tokens to send for contract termination.
    - **Modifier:** onlyManager
-   - **Description:** Terminates the contract and sends tokens to the specified address. Requires the termination wallet to be either the invest or institution wallet, and the token amount to match the contract amount.
+   - **Description:** Terminates the contract and sends tokens to the specified address. Requires the termination wallet to be either the invest or institution wallet, and the token amount to match the warranty amount.
 
 3. **updateManagerAddr:**
    - **Parameters:**
@@ -122,17 +117,17 @@ The AvalGest Main  contract is a Solidity smart contract designed to manage and 
 
 6. **updateAmountToken:**
    - **Parameters:**
-     - amount (uint256): The new contract amount in tokens.
+     - amount (uint256): The new warranty amount in tokens.
    - **Modifier:** onlyManager
-   - **Description:** Updates the contract amount.
+   - **Description:** Updates the warranty amount.
 
 ### Usage Recommendations
 
 - Ensure that the contract owner, invest wallet, institution wallet, and manager wallet are set appropriately during deployment.
-- Use the provided functions to update wallet addresses and contract amounts as needed.
+- Use the provided functions to update wallet addresses and warranty amounts as needed.
 - Follow the specified modifiers to control access to sensitive functions.
 - Monitor emitted events for important contract actions.
 
 ### Disclaimer
 
-This documentation provides an overview of the AvalGest Main  smart contract. It is essential to review and understand the contract's functionalities, modifiers, and events before deployment. Smart contracts involve financial transactions and should be deployed with caution.
+This documentation provides an overview of the AvalGestGPT smart contract. It is essential to review and understand the contract's functionalities, modifiers, and events before deployment. Smart contracts involve financial transactions and should be deployed with caution.
