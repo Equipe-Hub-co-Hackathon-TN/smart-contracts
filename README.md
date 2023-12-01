@@ -1,16 +1,17 @@
 # Smart Contract Documentation
 
-## AvalGestGPT Contract
+## AvalGestMain Contract
 
 ### Overview
 
-The AvalGestGPT contract is a Solidity smart contract designed for managing financial transactions among different wallets. It includes functionalities to send tokens to a manager, terminate the contract, and update wallet addresses and warranty amounts.
+The AvalGestMain contract is a Solidity smart contract designed for managing financial transactions among different wallets. It includes functionalities to send tokens to a manager, terminate the contract, and update wallet addresses and warranty amounts.
 
 ### Contract Details
 
 - **SPDX-License-Identifier:** MIT
 - **Documentation:** [GitHub Repository](https://github.com/Equipe-Hub-co-Hackathon-TN/smart-contracts)
 - **Solidity Version:** ^0.8.17
+- **Contract Address MUMBAI: 0x52d442BAb6D92DD9913DEd19CB04A321eD2925B6
 
 ### Contract Variables
 
@@ -53,7 +54,7 @@ The AvalGestGPT contract is a Solidity smart contract designed for managing fina
      - amount (uint256): The amount of tokens sent to the manager.
    - **Description:** Triggered when tokens are sent to the manager.
 
-3. **WarrantyAmount:**
+3. **WarrantyAmountUpdated:**
    - **Parameters:**
      - amount (uint256): The updated warranty amount in tokens.
    - **Description:** Triggered when the warranty amount is updated.
@@ -115,7 +116,7 @@ The AvalGestGPT contract is a Solidity smart contract designed for managing fina
    - **Modifier:** onlyManager
    - **Description:** Updates the institutional wallet address.
 
-6. **updateAmountToken:**
+6. **updateWarrantyAmount:**
    - **Parameters:**
      - amount (uint256): The new warranty amount in tokens.
    - **Modifier:** onlyManager
@@ -130,4 +131,4 @@ The AvalGestGPT contract is a Solidity smart contract designed for managing fina
 
 ### Disclaimer
 
-This documentation provides an overview of the AvalGestGPT smart contract. It is essential to review and understand the contract's functionalities, modifiers, and events before deployment. Smart contracts involve financial transactions and should be deployed with caution.
+This documentation provides an overview of the AvalGestMain smart contract. It is essential to review and understand the contract's functionalities, modifiers, and events before deployment. Smart contracts involve financial transactions and should be deployed with caution.
