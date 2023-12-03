@@ -89,7 +89,7 @@ contract AvalGestFiatLoan {
     }
 
     /* SEND TOKENS TO MANAGER */
-    function requestContract(string memory _cnpj_institution, string memory _investor_name, string memory _investor_rg, string memory _investor_cpf, string memory _cet, string memory _interest_rate, string memory _payment_deadline, string memory _value_of_installments, string memory _loan_amount, string memory _warranty) public onlyInvest {
+    function requestContract(string memory _cnpj_institution, string memory _investor_name, string memory _investor_rg, string memory _investor_cpf, string memory _cet, string memory _interest_rate, string memory _payment_deadline, string memory _value_of_installments, string memory _loan_amount, string memory _warranty) public onlyManager {
         
         uint _id = uint(keccak256(abi.encodePacked(block.difficulty, block.timestamp, msg.sender)));
 
