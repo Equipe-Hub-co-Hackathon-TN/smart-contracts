@@ -230,3 +230,196 @@ Deploy the smart contract to the Ethereum blockchain, specifying the initial wal
 ## License
 
 This smart contract is released under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
+
+---------------------------------------------------------------------------
+
+# Smart Contract Documentation
+
+## AvalGestBailInsurance Contract
+
+### Overview
+
+The AvalGestBailInsurance contract is a Solidity smart contract designed to manage information insertion and financial operations secured by crypto tokens on the Ethereum blockchain. It provides functionalities for initiating, approving, canceling, and completing loan contracts. Additionally, the contract allows the transfer of tokens as collateral to a designated manager.
+
+### Contract Details
+
+- **SPDX-License-Identifier:** MIT
+- **Solidity Version:** ^0.8.17
+- **Contract Address:** [Contract Address on Etherscan](https://etherscan.io/address/0xContractAddressHere#code)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+### Contract Variables
+
+1. **Owner:**
+   - **Type:** address
+   - **Access:** public
+   - **Description:** The address of the contract owner, possessing overall control and authority over the contract.
+
+2. **Investment Wallet:**
+   - **Type:** address
+   - **Access:** public
+   - **Description:** The wallet address dedicated to handling investments.
+
+3. **Institution Wallet:**
+   - **Type:** address
+   - **Access:** public
+   - **Description:** The wallet address associated with the financial institution involved in the loan.
+
+4. **Manager Wallet:**
+   - **Type:** address
+   - **Access:** public
+   - **Description:** The wallet address designated for managing the contract.
+
+5. **Warranty Amount:**
+   - **Type:** uint256
+   - **Access:** public
+   - **Description:** The amount of crypto tokens (in Wei) required as collateral for the loan.
+
+6. **Payment Receipt:**
+   - **Type:** string (private)
+   - **Access:** private
+   - **Description:** Stores an internal payment receipt.
+
+7. **Escrow Tokens Sent:**
+   - **Type:** bool
+   - **Access:** public
+   - **Description:** A flag indicating whether the collateral tokens have been sent to the manager.
+
+8. **Contract Struct:**
+   - **Type:** struct
+   - **Description:** Stores details of a loan contract, including ID, institution details, investor details, contract terms, and status.
+
+### Events
+
+- **AddressUpdated:**
+  - **Parameters:** (address walletAddr, string description)
+  - **Description:** Emitted when the address of a wallet associated with the contract is updated.
+
+- **CompletionOfContract:**
+  - **Parameters:** (uint id, StatusContract status)
+  - **Description:** Emitted when a loan contract is successfully completed.
+
+- **CancelContract:**
+  - **Parameters:** (uint id, StatusContract status)
+  - **Description:** Emitted when a loan contract is canceled.
+
+- **ApproveContract:**
+  - **Parameters:** (uint id, StatusContract status)
+  - **Description:** Emitted when a loan contract is approved.
+
+- **RequestContract:**
+  - **Parameters:** (uint id, string cnpj_institution, string investor_name, string investor_rg, string investor_cpf, string cet, string interest_rate, string payment_deadline, string value_of_installments, string loan_amount, string warranty, StatusContract status)
+  - **Description:** Emitted when a new loan contract is requested.
+
+- **SavePaymentReceipt:**
+  - **Parameters:** (uint id, string paymentReceipt)
+  - **Description:** Emitted when a payment receipt is saved.
+
+- **WarrantyAmountUpdated:**
+  - **Parameters:** (uint256 amount)
+  - **Description:** Emitted when the warranty amount is updated.
+
+- **SentToManagerTokensInCollateral:**
+  - **Parameters:** (address to, uint256 amount)
+  - **Description:** Emitted when tokens are sent to the manager as collateral.
+
+### Modifiers
+
+- **onlyOwner:**
+  - **Description:** Ensures that only the contract owner can call the associated function.
+
+- **onlyInvest:**
+  - **Description:** Ensures that only the investment wallet can call the associated function.
+
+- **onlyManager:**
+  - **Description:** Ensures that only the manager wallet can call the associated function.
+
+- **contractMembers:**
+  - **Description:** Restricts access to certain functions to specific addresses (owner, institution, manager, and invest wallets).
+
+### Constructor
+
+- **Description:** Initializes the contract with the deploying address as the owner, and sets default wallet addresses and warranty amount to zero.
+
+### Main Functions
+
+1. **sendToManagerTokensInCollateral:**
+   - **Description:** Allows the invest wallet to send tokens to the manager as collateral.
+
+2. **requestContract:**
+   - **Description:** Allows the manager to request a new loan contract after ensuring that escrow tokens have been sent.
+
+3. **approveContract:**
+   - **Description:** Allows the manager to approve a pending contract, provided that escrow tokens have been sent.
+
+4. **cancelContract:**
+   - **Description:** Allows the manager to cancel a pending or approved contract, returning the escrowed tokens to the institution.
+
+5. **completionOfContract:**
+   - **Description:** Allows the manager to mark an approved contract as completed, returning the escrowed tokens to the investor.
+
+6. **savePaymentReceipt:**
+   - **Description:** Allows the manager to save a payment receipt for the contract.
+
+7. **updateManagerAddr:**
+   - **Description:** Allows the owner to update the manager wallet address.
+
+8. **updateInvestAddr:**
+   - **Description:** Allows the manager to update the invest wallet address.
+
+9. **updateInstitutionAddr:**
+   - **Description:** Allows the manager to update the institutional wallet address.
+
+10. **readContract:**
+   - **Description:** Allows anyone to view the details of the current loan contract.
+
+11. **readPaymentReceipt:**
+   - **Description:** Allows anyone to view the saved payment receipt.
+
+12. **updateWarrantyAmount:**
+   - **Description:** Allows the manager to update the warranty amount.
+
+### Example Usage
+
+#### Requesting a New Contract
+
+```solidity
+// Ensure escrow tokens are sent before requesting a new contract
+contractInstance.sendToManagerTokensInCollateral(1000);
+
+// Request a new contract
+contractInstance.requestContract("123456789", "John Doe", "12345", "12345678901", "0.05", "0.1", "2023-12-31", "1000", "5000", "20000", "TokenABC");
+
+```
+####Approving a Contract
+// Approve a pending contract
+contractInstance.approveContract();
+
+####Completing a Contract
+// Complete an approved contract
+contractInstance.completionOfContract();
+
+### Update History
+
+- **Version 1.0 (YYYY-MM-DD):**
+  - Initial implementation of the AvalGestFiatLoan contract.
+  - Basic functionalities for requesting, approving, canceling, and completing contracts.
+  - Token transfer as collateral to the manager.
+  - Address and warranty amount updates.
+  - Events for contract state changes and updates.
+
+### Known Issues
+
+- None at the moment.
+
+### Future Enhancements
+
+- Implement additional financial calculations.
+- Integrate with external oracles for real-time data.
+- Enhance security measures.
+
+### Conclusion
+
+The AvalGestBailInsurance.sol contract serves as a foundation for managing information insertion and financial operations secured by crypto tokens on the Ethereum blockchain. It provides a robust set of functionalities while allowing for future improvements and customization. Developers are encouraged to contribute to its ongoing evolution. For more details, refer to the [GitHub Repository](https://github.com/Equipe-Hub-co-Hackathon-TN/smart-contracts).
+
