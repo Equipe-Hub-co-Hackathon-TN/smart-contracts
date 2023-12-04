@@ -9,7 +9,6 @@ The AvalGestMain contract is a Solidity smart contract designed for managing fin
 ### Contract Details
 
 - **SPDX-License-Identifier:** MIT
-- **Documentation:** [GitHub Repository](https://github.com/Equipe-Hub-co-Hackathon-TN/smart-contracts)
 - **Solidity Version:** ^0.8.17
 - **Contract Address MUMBAI**: [0x52d442BAb6D92DD9913DEd19CB04A321eD2925B6](https://mumbai.polygonscan.com/address/0x52d442BAb6D92DD9913DEd19CB04A321eD2925B6#code)
 
@@ -132,3 +131,96 @@ The AvalGestMain contract is a Solidity smart contract designed for managing fin
 ### Disclaimer
 
 This documentation provides an overview of the AvalGestMain smart contract. It is essential to review and understand the contract's functionalities, modifiers, and events before deployment. Smart contracts involve financial transactions and should be deployed with caution.
+
+----------------------------------------------
+
+# AvalGestFiatLoan Smart Contract
+
+- **Contract Address MUMBAI**: [colar endereço](colar link)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This smart contract, **AvalGestFiatLoan**, facilitates the management of fiat loans, providing functionality for requesting, approving, canceling, and terminating contracts. It is implemented in Solidity and follows the MIT License. For more details, refer to the documentation below.
+
+## Contract Overview
+
+### Contract Structure
+
+The smart contract consists of the following main components:
+
+- **Owner:** The creator and owner of the contract.
+- **Wallets:**
+  - `investWallet`: Wallet for managing investments.
+  - `institutionWallet`: Institutional wallet.
+  - `managerWallet`: Wallet for managing the contract.
+- **Contract Data:**
+  - `_contract`: Struct containing information about the loan contract.
+  - `_paymentReceipt`: String storing payment receipts.
+- **Status Enumeration:**
+  - `StatusContract`: Enum representing the status of a loan contract (Pending, Approved, Finished, Canceled).
+
+### Events
+
+1. **AddressUpdated:**
+   - **Description:** Emitted when wallet addresses are updated.
+2. **TerminationOfContract:**
+   - **Description:** Emitted when a contract is terminated.
+3. **CancelContract:**
+   - **Description:** Emitted when a contract is canceled.
+4. **ApproveContract:**
+   - **Description:** Emitted when a contract is approved.
+5. **RequestContract:**
+   - **Description:** Emitted when a new loan contract is requested.
+6. **SavePaymentReceipt:**
+   - **Description:** Emitted when a payment receipt is saved.
+
+### Modifiers
+
+1. `onlyOwner:` Restricts access to the owner of the contract.
+2. `onlyInvest:` Restricts access to the investment wallet.
+3. `onlyManager:` Restricts access to the manager wallet.
+4. `contractMembers:` Restricts access to authorized contract members.
+
+### Functions
+
+- `requestContract:` Allows the manager to request a new loan contract.
+- `approveContract:` Allows the manager to approve a pending contract.
+- `cancelContract:` Allows the manager to cancel a pending contract.
+- `terminationOfContract:` Allows the manager to terminate an approved contract.
+- `savePaymentReceipt:` Allows the manager to save payment receipts.
+- `updateManagerAddr:` Allows the owner to update the manager's wallet address.
+- `updateInvestAddr:` Allows the manager to update the investment wallet address.
+- `updateInstitutionAddr:` Allows the manager to update the institutional wallet address.
+- `readContract:` Allows reading the details of the current contract.
+- `readPaymentReceipt:` Allows reading the saved payment receipt.
+
+## Usage
+
+### Contract Deployment
+
+Deploy the smart contract to the Ethereum blockchain, specifying the initial wallet addresses.
+
+### Contract Interaction
+
+**Manager Actions:**
+
+- Use `requestContract` to initiate a new loan contract.
+- Approve or cancel pending contracts using `approveContract` or `cancelContract`.
+- Terminate an approved contract with `terminationOfContract`.
+- Save payment receipts using `savePaymentReceipt`.
+
+**Wallet Address Updates:**
+
+- Update the manager, investment, or institutional wallet addresses using the corresponding `update*Addr` functions.
+
+**Read Contract Details:**
+
+- Retrieve contract details with `readContract`.
+
+**Read Payment Receipts:**
+
+- Retrieve payment receipts with `readPaymentReceipt`.
+
+## License
+
+This smart contract is released under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
