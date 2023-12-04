@@ -233,9 +233,7 @@ This smart contract is released under the [MIT License](https://opensource.org/l
 
 ---------------------------------------------------------------------------
 
-# Smart Contract Documentation
-
-## AvalGestBailInsurance Contract
+# AvalGestBailInsurance Contract
 
 ### Overview
 
