@@ -3,7 +3,7 @@
 
 pragma solidity ^0.8.17;
 
-contract AvalGestFiatLoan {
+contract AvalGestBailInsurance.sol {
     
     address public owner;
 
